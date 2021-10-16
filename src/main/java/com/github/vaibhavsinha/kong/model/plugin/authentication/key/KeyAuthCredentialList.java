@@ -10,6 +10,6 @@ import java.util.List;
  */
 @Data
 public class KeyAuthCredentialList extends AbstractEntityList {
-    Long total;
-    List<KeyAuthCredential> data;
+  Long total;
+  List<KeyAuthCredential> data;
 }

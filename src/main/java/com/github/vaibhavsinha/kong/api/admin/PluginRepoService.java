@@ -4,7 +4,7 @@ import com.github.vaibhavsinha.kong.model.admin.plugin.EnabledPlugins;
 
 public interface PluginRepoService {
 
-	EnabledPlugins retrieveEnabledPlugins();
+  EnabledPlugins retrieveEnabledPlugins();
 
-	Object retrievePluginSchema(String pluginName);
+  Object retrievePluginSchema(String pluginName);
 }

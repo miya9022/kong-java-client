@@ -8,16 +8,16 @@ import com.github.vaibhavsinha.kong.model.admin.consumer.ConsumerList;
  */
 public interface ConsumerService {
 
-    Consumer createConsumer(Consumer request);
+  Consumer createConsumer(Consumer request);
 
-    Consumer getConsumer(String usernameOrId);
+  Consumer getConsumer(String usernameOrId);
 
-    Consumer updateConsumer(String usernameOrId, Consumer request);
+  Consumer updateConsumer(String usernameOrId, Consumer request);
 
-    @Deprecated
-    Consumer createOrUpdateConsumer(Consumer request);
+  @Deprecated
+  Consumer createOrUpdateConsumer(Consumer request);
 
-    void deleteConsumer(String usernameOrId);
+  void deleteConsumer(String usernameOrId);
 
-    ConsumerList listConsumers(String id, String customId, String username, Long size, String offset);
+  ConsumerList listConsumers(String id, String customId, String username, Long size, String offset);
 }

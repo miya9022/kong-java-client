@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.plugin.authentication.oauth2;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -9,30 +9,30 @@ import lombok.Data;
 @Data
 public class Token {
 
-    @SerializedName("id")
-    private String id;
+  @Json(name = "id")
+  private String id;
 
-    @SerializedName("credential_id")
-    private String credentialId;
+  @Json(name = "credential_id")
+  private String credentialId;
 
-    @SerializedName("token_type")
-    private String tokenType;
+  @Json(name = "token_type")
+  private String tokenType;
 
-    @SerializedName("access_token")
-    private String accessToken;
+  @Json(name = "access_token")
+  private String accessToken;
 
-    @SerializedName("refresh_token")
-    private String refreshToken;
+  @Json(name = "refresh_token")
+  private String refreshToken;
 
-    @SerializedName("created_at")
-    private Long createdAt;
+  @Json(name = "created_at")
+  private Long createdAt;
 
-    @SerializedName("expires_in")
-    private Long expiresIn;
+  @Json(name = "expires_in")
+  private Long expiresIn;
 
-    @SerializedName("scope")
-    private String scope;
+  @Json(name = "scope")
+  private String scope;
 
-    @SerializedName("authenticated_userid")
-    private String authenticatedUserid;
+  @Json(name = "authenticated_userid")
+  private String authenticatedUserid;
 }

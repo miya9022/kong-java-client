@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.plugin.authentication.basic;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,19 +11,23 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BasicAuthCredential {
 
-    @SerializedName("id")
-    private String id;
-    @SerializedName("username")
-    private String username;
-    @SerializedName("password")
-    private String password;
-    @SerializedName("consumer_id")
-    private String consumerId;
-    @SerializedName("created_at")
-    private Long createdAt;
+  @Json(name = "id")
+  private String id;
 
-    public BasicAuthCredential(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+  @Json(name = "username")
+  private String username;
+
+  @Json(name = "password")
+  private String password;
+
+  @Json(name = "consumer_id")
+  private String consumerId;
+
+  @Json(name = "created_at")
+  private Long createdAt;
+
+  public BasicAuthCredential(String username, String password) {
+    this.username = username;
+    this.password = password;
+  }
 }

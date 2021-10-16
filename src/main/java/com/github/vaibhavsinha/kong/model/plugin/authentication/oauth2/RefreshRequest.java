@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.plugin.authentication.oauth2;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -10,15 +10,15 @@ import lombok.Data;
 @Data
 public class RefreshRequest {
 
-    @SerializedName("refresh_token")
-    private String refreshToken;
+  @Json(name = "refresh_token")
+  private String refreshToken;
 
-    @SerializedName("client_id")
-    private String clientId;
+  @Json(name = "client_id")
+  private String clientId;
 
-    @SerializedName("client_secret")
-    private String clientSecret;
+  @Json(name = "client_secret")
+  private String clientSecret;
 
-    @SerializedName("grant_type")
-    private String grantType = "refresh_token";
+  @Json(name = "grant_type")
+  private String grantType = "refresh_token";
 }

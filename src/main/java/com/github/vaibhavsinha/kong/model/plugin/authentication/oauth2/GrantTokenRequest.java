@@ -1,7 +1,7 @@
 package com.github.vaibhavsinha.kong.model.plugin.authentication.oauth2;
 
-import com.google.gson.annotations.SerializedName;
 
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -10,53 +10,53 @@ import lombok.Data;
 @Data
 public class GrantTokenRequest {
 
-    @SerializedName("id")
-    private String id;
+  @Json(name = "id")
+  private String id;
 
-    @SerializedName("client_id")
-    private String clientId;
+  @Json(name = "client_id")
+  private String clientId;
 
-    @SerializedName("client_secret")
-    private String clientSecret;
+  @Json(name = "client_secret")
+  private String clientSecret;
 
-    /**
-     * The grant type: "authorization_code", "password", "client_credentials", or "refresh_token".
-     *   "authorization_code" for Authorization Code process, the response will contain both access_token & refresh_token.
-     *   "password" for Password Credentials process, the response will contain both access_token & refresh_token.
-     *   "client_credentials" for Client Credentials process, the response will contain access_token only.
-     *   "refresh_token" for Refresh Token process, the response will contain both access_token & refresh_token.
-     * */
-    @SerializedName("grant_type")
-    private String grantType;
+  /**
+   * The grant type: "authorization_code", "password", "client_credentials", or "refresh_token".
+   * "authorization_code" for Authorization Code process, the response will contain both access_token & refresh_token.
+   * "password" for Password Credentials process, the response will contain both access_token & refresh_token.
+   * "client_credentials" for Client Credentials process, the response will contain access_token only.
+   * "refresh_token" for Refresh Token process, the response will contain both access_token & refresh_token.
+   */
+  @Json(name = "grant_type")
+  private String grantType;
 
-    @SerializedName("created_at")
-    private Long createdAt;
+  @Json(name = "created_at")
+  private Long createdAt;
 
-    @SerializedName("provision_key")
-    private String provisionKey;
+  @Json(name = "provision_key")
+  private String provisionKey;
 
-    @SerializedName("scope")
-    private String scope;
+  @Json(name = "scope")
+  private String scope;
 
-    @SerializedName("authenticated_userid")
-    private String authenticatedUserid;
+  @Json(name = "authenticated_userid")
+  private String authenticatedUserid;
 
-    @SerializedName("username")
-    private String username;
+  @Json(name = "username")
+  private String username;
 
-    @SerializedName("password")
-    private String password;
+  @Json(name = "password")
+  private String password;
 
-    /**
-     * Only used in "Authorization Code" process
-     * */
-    @SerializedName("code")
-    private String code;
+  /**
+   * Only used in "Authorization Code" process
+   */
+  @Json(name = "code")
+  private String code;
 
-    /**
-     * Only used in "Refresh Token" process
-     * */
-    @SerializedName("refresh_token")
-    private String refreshToken;
+  /**
+   * Only used in "Refresh Token" process
+   */
+  @Json(name = "refresh_token")
+  private String refreshToken;
 
 }

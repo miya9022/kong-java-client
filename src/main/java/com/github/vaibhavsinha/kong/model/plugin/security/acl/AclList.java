@@ -10,6 +10,6 @@ import java.util.List;
  */
 @Data
 public class AclList extends AbstractEntityList {
-    Long total;
-    List<Acl> data;
+  Long total;
+  List<Acl> data;
 }

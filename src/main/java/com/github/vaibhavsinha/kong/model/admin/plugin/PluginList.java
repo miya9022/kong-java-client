@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 public class PluginList extends AbstractEntityList {
-    Long total;
-    String next;
-    List<Plugin> data;
+  Long total;
+  String next;
+  List<Plugin> data;
 }

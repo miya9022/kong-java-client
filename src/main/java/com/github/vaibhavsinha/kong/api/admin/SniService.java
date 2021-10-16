@@ -8,10 +8,15 @@ import com.github.vaibhavsinha.kong.model.admin.sni.SniList;
  */
 @Deprecated
 public interface SniService {
-    Sni createSni(Sni request);
-    Sni getSni(String name);
-    Sni updateSni(String name, Sni request);
-    Sni createOrUpdateSni(Sni request);
-    Sni deleteSni(String name);
-    SniList listSnis();
+  Sni createSni(Sni request);
+
+  Sni getSni(String name);
+
+  Sni updateSni(String name, Sni request);
+
+  Sni createOrUpdateSni(Sni request);
+
+  Sni deleteSni(String name);
+
+  SniList listSnis();
 }

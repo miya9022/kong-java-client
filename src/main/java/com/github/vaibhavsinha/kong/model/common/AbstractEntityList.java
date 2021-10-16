@@ -7,17 +7,15 @@ import com.github.vaibhavsinha.kong.utils.UrlUtil;
  */
 public abstract class AbstractEntityList {
 
-    public String getNext() {
-        return null;
-    }
+  public String getNext() {
+    return null;
+  }
 
-    public String getOffset() {
-        if(getNext() == null) {
-            return null;
-        }
-        else {
-            return UrlUtil.splitQueryString(getNext()).get("offset");
-        }
+  public String getOffset() {
+    if (getNext() == null) {
+      return null;
+    } else {
+      return UrlUtil.splitQueryString(getNext()).get("offset");
     }
-
+  }
 }

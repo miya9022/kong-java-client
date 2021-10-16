@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.admin.sni;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -8,10 +8,13 @@ import lombok.Data;
  */
 @Data
 public class Sni {
-    @SerializedName("ssl_certificate_id")
-    private String sslCertificateId;
-    @SerializedName("name")
-    private String name;
-    @SerializedName("created_at")
-    private Long createdAt;
+
+  @Json(name = "ssl_certificate_id")
+  private String sslCertificateId;
+
+  @Json(name = "name")
+  private String name;
+
+  @Json(name = "created_at")
+  private Long createdAt;
 }

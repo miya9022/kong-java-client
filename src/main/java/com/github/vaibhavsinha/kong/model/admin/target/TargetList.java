@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 public class TargetList extends AbstractEntityList {
-    Long total;
-    String next;
-    List<Target> data;
+  Long total;
+  String next;
+  List<Target> data;
 }

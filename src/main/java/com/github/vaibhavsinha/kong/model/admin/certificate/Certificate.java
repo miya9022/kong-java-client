@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.admin.certificate;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 import java.util.List;
@@ -11,14 +11,18 @@ import java.util.List;
 @Data
 public class Certificate {
 
-    @SerializedName("id")
-    private String id;
-    @SerializedName("cert")
-    private String cert;
-    @SerializedName("key")
-    private String key;
-    @SerializedName("snis")
-    private List<String> snis;
-    @SerializedName("created_at")
-    private Long createdAt;
+  @Json(name = "id")
+  private String id;
+
+  @Json(name = "cert")
+  private String cert;
+
+  @Json(name = "key")
+  private String key;
+
+  @Json(name = "snis")
+  private List<String> snis;
+
+  @Json(name = "created_at")
+  private Long createdAt;
 }

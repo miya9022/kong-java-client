@@ -14,23 +14,23 @@ import java.lang.reflect.Method;
 @Slf4j
 public class RetrofitBodyExtractorInvocationHandler implements InvocationHandler {
 
-    private Object proxied;
+  private final Object proxied;
 
-    public RetrofitBodyExtractorInvocationHandler(Object proxied) {
-        this.proxied = proxied;
-    }
+  public RetrofitBodyExtractorInvocationHandler(Object proxied) {
+    this.proxied = proxied;
+  }
 
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        String methodName = method.getName();
-        Class<?>[] parameterTypes = method.getParameterTypes();
-        Method method1 = proxied.getClass().getMethod(methodName, parameterTypes);
-        Call call = (Call) method1.invoke(proxied, args);
-        Response response = call.execute();
-        log.debug("Http Request:  " + response.raw().request());
-        log.debug("Http Response: " + response.raw().toString());
-        if(!response.isSuccessful()) {
-            throw new KongClientException(response.errorBody() != null ? response.errorBody().string() : String.valueOf(response.code()));
-        }
-        return response.body();
+  public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+    var methodName = method.getName();
+    var parameterTypes = method.getParameterTypes();
+    var method1 = proxied.getClass().getMethod(methodName, parameterTypes);
+    var call = (Call) method1.invoke(proxied, args);
+    var response = call.execute();
+    log.debug("Http Request:  " + response.raw().request());
+    log.debug("Http Response: " + response.raw());
+    if (!response.isSuccessful()) {
+      throw new KongClientException(response.errorBody() != null ? response.errorBody().string() : String.valueOf(response.code()));
     }
+    return response.body();
+  }
 }

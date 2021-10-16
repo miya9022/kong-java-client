@@ -8,10 +8,15 @@ import com.github.vaibhavsinha.kong.model.admin.upstream.UpstreamList;
  */
 @Deprecated
 public interface UpstreamService {
-    Upstream createUpstream(Upstream request);
-    Upstream getUpstream(String nameOrId);
-    Upstream updateUpstream(String nameOrId, Upstream request);
-    Upstream createOrUpdateUpstream(Upstream request);
-    Upstream deleteUpstream(String nameOrId);
-    UpstreamList listUpstreams(String id, Integer slots, String name, Long size, String offset);
+  Upstream createUpstream(Upstream request);
+
+  Upstream getUpstream(String nameOrId);
+
+  Upstream updateUpstream(String nameOrId, Upstream request);
+
+  Upstream createOrUpdateUpstream(Upstream request);
+
+  Upstream deleteUpstream(String nameOrId);
+
+  UpstreamList listUpstreams(String id, Integer slots, String name, Long size, String offset);
 }

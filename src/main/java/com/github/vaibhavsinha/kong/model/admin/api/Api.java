@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.admin.api;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 import java.util.List;
@@ -11,49 +11,49 @@ import java.util.List;
 @Data
 public class Api {
 
-	@SerializedName("created_at")
-	private Long createdAt;
+  @Json(name = "created_at")
+  private Long createdAt;
 
-	@SerializedName("hosts")
-	private Object hosts; //sometimes array, sometimes map
+  @Json(name = "hosts")
+  private Object hosts; //sometimes array, sometimes map
 //	private List<String> hosts = null;
 
-	@SerializedName("uris")
-	private List<String> uris;
+  @Json(name = "uris")
+  private List<String> uris;
 
-	@SerializedName("methods")
-	private List<String> methods;
+  @Json(name = "methods")
+  private List<String> methods;
 
-	@SerializedName("http_if_terminated")
-	private Boolean httpIfTerminated;
+  @Json(name = "http_if_terminated")
+  private Boolean httpIfTerminated;
 
-	@SerializedName("https_only")
-	private Boolean httpsOnly;
+  @Json(name = "https_only")
+  private Boolean httpsOnly;
 
-	@SerializedName("id")
-	private String id;
+  @Json(name = "id")
+  private String id;
 
-	@SerializedName("name")
-	private String name;
+  @Json(name = "name")
+  private String name;
 
-	@SerializedName("preserve_host")
-	private Boolean preserveHost;
+  @Json(name = "preserve_host")
+  private Boolean preserveHost;
 
-	@SerializedName("retries")
-	private Integer retries;
+  @Json(name = "retries")
+  private Integer retries;
 
-	@SerializedName("strip_uri")
-	private Boolean stripUri;
+  @Json(name = "strip_uri")
+  private Boolean stripUri;
 
-	@SerializedName("upstream_connect_timeout")
-	private Integer upstreamConnectTimeout;
+  @Json(name = "upstream_connect_timeout")
+  private Integer upstreamConnectTimeout;
 
-	@SerializedName("upstream_read_timeout")
-	private Integer upstreamReadTimeout;
+  @Json(name = "upstream_read_timeout")
+  private Integer upstreamReadTimeout;
 
-	@SerializedName("upstream_send_timeout")
-	private Integer upstreamSendTimeout;
+  @Json(name = "upstream_send_timeout")
+  private Integer upstreamSendTimeout;
 
-	@SerializedName("upstream_url")
-	private String upstreamUrl;
+  @Json(name = "upstream_url")
+  private String upstreamUrl;
 }

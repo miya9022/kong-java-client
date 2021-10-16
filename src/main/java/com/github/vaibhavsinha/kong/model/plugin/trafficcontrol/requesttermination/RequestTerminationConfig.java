@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.plugin.trafficcontrol.requesttermination;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -8,12 +8,15 @@ import lombok.Data;
  */
 @Data
 public class RequestTerminationConfig {
-    @SerializedName("status_code")
-    Integer statusCode;
-    @SerializedName("message")
-    String message;
-    @SerializedName("body")
-    String body;
-    @SerializedName("content_type")
-    String contentType;
+  @Json(name = "status_code")
+  Integer statusCode;
+
+  @Json(name = "message")
+  String message;
+
+  @Json(name = "body")
+  String body;
+
+  @Json(name = "content_type")
+  String contentType;
 }

@@ -8,10 +8,15 @@ import com.github.vaibhavsinha.kong.model.admin.certificate.CertificateList;
  */
 @Deprecated
 public interface CertificateService {
-    Certificate createCertificate(Certificate request);
-    Certificate getCertificate(String sniOrId);
-    Certificate updateCertificate(String sniOrId, Certificate request);
-    Certificate createOrUpdateCertificate(Certificate request);
-    Certificate deleteCertificate(String sniOrId);
-    CertificateList listCertificates();
+  Certificate createCertificate(Certificate request);
+
+  Certificate getCertificate(String sniOrId);
+
+  Certificate updateCertificate(String sniOrId, Certificate request);
+
+  Certificate createOrUpdateCertificate(Certificate request);
+
+  Certificate deleteCertificate(String sniOrId);
+
+  CertificateList listCertificates();
 }

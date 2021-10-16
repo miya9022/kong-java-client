@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.admin.target;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -9,14 +9,18 @@ import lombok.Data;
 @Data
 public class Target {
 
-    @SerializedName("id")
-    private String id;
-    @SerializedName("target")
-    private String target;
-    @SerializedName("weight")
-    private Long weight;
-    @SerializedName("upstream_id")
-    private String upstreamId;
-    @SerializedName("created_at")
-    private Long createdAt;
+  @Json(name = "id")
+  private String id;
+
+  @Json(name = "target")
+  private String target;
+
+  @Json(name = "weight")
+  private Long weight;
+
+  @Json(name = "upstream_id")
+  private String upstreamId;
+
+  @Json(name = "created_at")
+  private Long createdAt;
 }

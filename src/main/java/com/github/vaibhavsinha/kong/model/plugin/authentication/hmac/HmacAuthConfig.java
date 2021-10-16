@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.plugin.authentication.hmac;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -9,10 +9,12 @@ import lombok.Data;
 @Data
 public class HmacAuthConfig {
 
-    @SerializedName("hide_credentials")
-    Boolean hideCredentials;
-    @SerializedName("anonymous")
-    String anonymous;
-    @SerializedName("clock_skew")
-    Integer clockSkew;
+  @Json(name = "hide_credentials")
+  Boolean hideCredentials;
+
+  @Json(name = "anonymous")
+  String anonymous;
+
+  @Json(name = "clock_skew")
+  Integer clockSkew;
 }

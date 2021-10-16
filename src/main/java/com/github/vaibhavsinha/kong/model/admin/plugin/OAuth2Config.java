@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.admin.plugin;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 import java.util.List;
@@ -11,40 +11,40 @@ import java.util.List;
 @Data
 public class OAuth2Config {
 
-	@SerializedName("provision_key")
-	private String provisionKey;
+  @Json(name = "provision_key")
+  private String provisionKey;
 
-	@SerializedName("scopes")
-	private List<String> scopes;
+  @Json(name = "scopes")
+  private List<String> scopes;
 
-	@SerializedName("mandatory_scope")
-	private boolean mandatoryScope;
+  @Json(name = "mandatory_scope")
+  private boolean mandatoryScope;
 
-	@SerializedName("token_expiration")
-	private int tokenExpiration;
+  @Json(name = "token_expiration")
+  private int tokenExpiration;
 
-	@SerializedName("anonymous")
-	private String anonymous;
+  @Json(name = "anonymous")
+  private String anonymous;
 
-	@SerializedName("accept_http_if_already_terminated")
-	private boolean acceptHttpIfAlreadyTerminated;
+  @Json(name = "accept_http_if_already_terminated")
+  private boolean acceptHttpIfAlreadyTerminated;
 
-	@SerializedName("enable_authorization_code")
-	private boolean enableAuthorizationCode;
+  @Json(name = "enable_authorization_code")
+  private boolean enableAuthorizationCode;
 
-	@SerializedName("enable_implicit_grant")
-	private boolean enableImplicitGrant;
+  @Json(name = "enable_implicit_grant")
+  private boolean enableImplicitGrant;
 
-	@SerializedName("enable_password_grant")
-	private boolean enablePasswordGrant;
+  @Json(name = "enable_password_grant")
+  private boolean enablePasswordGrant;
 
-	@SerializedName("enable_client_credentials")
-	private boolean enableClientCredentials;
+  @Json(name = "enable_client_credentials")
+  private boolean enableClientCredentials;
 
-	@SerializedName("global_credentials")
-	private boolean globalCredentials;
+  @Json(name = "global_credentials")
+  private boolean globalCredentials;
 
-	@SerializedName("hide_credentials")
-	private boolean hideCredentials;
+  @Json(name = "hide_credentials")
+  private boolean hideCredentials;
 
 }

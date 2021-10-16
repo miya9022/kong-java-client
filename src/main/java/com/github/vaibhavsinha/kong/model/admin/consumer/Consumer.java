@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.admin.consumer;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -9,13 +9,13 @@ import lombok.Data;
 @Data
 public class Consumer {
 
-    String id;
+  String id;
 
-    @SerializedName("custom_id")
-    String customId;
+  @Json(name = "custom_id")
+  String customId;
 
-    @SerializedName("created_at")
-    Long createdAt;
+  @Json(name = "created_at")
+  Long createdAt;
 
-    String username;
+  String username;
 }

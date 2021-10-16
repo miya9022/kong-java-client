@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.plugin.trafficcontrol.ratelimiting;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -9,40 +9,53 @@ import lombok.Data;
 @Data
 public class RateLimitingConfig {
 
-    @SerializedName("second")
-    Integer second;
-    @SerializedName("minute")
-    Integer minute;
-    @SerializedName("hour")
-    Integer hour;
-    @SerializedName("day")
-    Integer day;
-    @SerializedName("month")
-    Integer month;
-    @SerializedName("year")
-    Integer year;
-    @SerializedName("limit_by")
-    LimitBy limitBy;
-    @SerializedName("policy")
-    Policy policy;
-    @SerializedName("fault_tolerant")
-    Boolean faultTolerant;
-    @SerializedName("redis_host")
-    String redisHost;
-    @SerializedName("redis_port")
-    Integer redisPort;
-    @SerializedName("redis_password")
-    String redisPassword;
-    @SerializedName("redis_timeout")
-    Integer redisTimeout;
-    @SerializedName("redis_database")
-    Integer redisDatabase;
+  @Json(name = "second")
+  Integer second;
 
-    public enum Policy {
-        local, cluster, redis
-    }
+  @Json(name = "minute")
+  Integer minute;
 
-    public enum LimitBy {
-        consumer, credential, ip
-    }
+  @Json(name = "hour")
+  Integer hour;
+
+  @Json(name = "day")
+  Integer day;
+
+  @Json(name = "month")
+  Integer month;
+
+  @Json(name = "year")
+  Integer year;
+
+  @Json(name = "limit_by")
+  LimitBy limitBy;
+
+  @Json(name = "policy")
+  Policy policy;
+
+  @Json(name = "fault_tolerant")
+  Boolean faultTolerant;
+
+  @Json(name = "redis_host")
+  String redisHost;
+
+  @Json(name = "redis_port")
+  Integer redisPort;
+
+  @Json(name = "redis_password")
+  String redisPassword;
+
+  @Json(name = "redis_timeout")
+  Integer redisTimeout;
+
+  @Json(name = "redis_database")
+  Integer redisDatabase;
+
+  public enum Policy {
+    local, cluster, redis
+  }
+
+  public enum LimitBy {
+    consumer, credential, ip
+  }
 }

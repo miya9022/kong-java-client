@@ -10,6 +10,6 @@ import java.util.List;
  */
 @Data
 public class CertificateList extends AbstractEntityList {
-    Long total;
-    List<Certificate> data;
+  Long total;
+  List<Certificate> data;
 }

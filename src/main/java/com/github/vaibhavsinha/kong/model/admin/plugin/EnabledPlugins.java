@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.admin.plugin;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public class EnabledPlugins {
 
-    @SerializedName("enabled_plugins")
-    List<String> enabledPlugins;
+  @Json(name = "enabled_plugins")
+  List<String> enabledPlugins;
 
 }

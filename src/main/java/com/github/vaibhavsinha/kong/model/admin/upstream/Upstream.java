@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.admin.upstream;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 import java.util.List;
@@ -11,14 +11,18 @@ import java.util.List;
 @Data
 public class Upstream {
 
-    @SerializedName("id")
-    private String id;
-    @SerializedName("slots")
-    private Integer slots;
-    @SerializedName("name")
-    private String name;
-    @SerializedName("orderlist")
-    private List<Integer> orderList;
-    @SerializedName("created_at")
-    private Long createdAt;
+  @Json(name = "id")
+  private String id;
+
+  @Json(name = "slots")
+  private Integer slots;
+
+  @Json(name = "name")
+  private String name;
+
+  @Json(name = "orderlist")
+  private List<Integer> orderList;
+
+  @Json(name = "created_at")
+  private Long createdAt;
 }

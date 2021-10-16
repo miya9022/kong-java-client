@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.plugin.authentication.oauth2;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 
 /**
@@ -8,6 +8,6 @@ import lombok.Data;
  */
 @Data
 public class Redirect {
-    @SerializedName("redirect_uri")
-    String redirectUri;
+  @Json(name = "redirect_uri")
+  String redirectUri;
 }

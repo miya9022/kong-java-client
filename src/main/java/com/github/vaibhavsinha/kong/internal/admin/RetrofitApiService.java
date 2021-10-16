@@ -11,26 +11,26 @@ import retrofit2.http.*;
  */
 public interface RetrofitApiService {
 
-    @POST("apis/")
-    Call<Api> createApi(@Body Api request);
+  @POST("apis/")
+  Call<Api> createApi(@Body Api request);
 
-    @GET("apis/{id}")
-    Call<Api> getApi(@Path("id") String nameOrId);
+  @GET("apis/{id}")
+  Call<Api> getApi(@Path("id") String nameOrId);
 
-    @PATCH("apis/{id}")
-    Call<Api> updateApi(@Path("id") String nameOrId, @Body Api request);
+  @PATCH("apis/{id}")
+  Call<Api> updateApi(@Path("id") String nameOrId, @Body Api request);
 
-    @Deprecated
-    @PUT("apis/")
-    Call<Api> createOrUpdateApi(@Body Api request);
+  @Deprecated
+  @PUT("apis/")
+  Call<Api> createOrUpdateApi(@Body Api request);
 
-    @DELETE("apis/{id}")
-    Call<Void> deleteApi(@Path("id") String nameOrId);
+  @DELETE("apis/{id}")
+  Call<Void> deleteApi(@Path("id") String nameOrId);
 
-    @GET("apis/")
-    Call<ApiList> listApis(@Query("id") String id, @Query("upstream_url") String upstreamUrl, @Query("name") String name, @Query("retries") Long retries,  @Query("size") Long size, @Query("offset") String offset);
+  @GET("apis/")
+  Call<ApiList> listApis(@Query("id") String id, @Query("upstream_url") String upstreamUrl, @Query("name") String name, @Query("retries") Long retries, @Query("size") Long size, @Query("offset") String offset);
 
 
-    @GET("apis/{id}/plugins")
-    Call<PluginList> listApiPlugins(@Path("id") String nameOrId);
+  @GET("apis/{id}/plugins")
+  Call<PluginList> listApiPlugins(@Path("id") String nameOrId);
 }

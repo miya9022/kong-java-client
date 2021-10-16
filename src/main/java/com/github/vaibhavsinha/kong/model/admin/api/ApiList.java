@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Data
 public class ApiList extends AbstractEntityList {
-    Long total;
-    String next;
-    List<Api> data;
+  Long total;
+  String next;
+  List<Api> data;
 }

@@ -10,6 +10,6 @@ import java.util.List;
  */
 @Data
 public class SniList extends AbstractEntityList {
-    Long total;
-    List<Sni> data;
+  Long total;
+  List<Sni> data;
 }

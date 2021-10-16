@@ -1,6 +1,6 @@
 package com.github.vaibhavsinha.kong.model.plugin.authentication.key;
 
-import com.google.gson.annotations.SerializedName;
+import com.squareup.moshi.Json;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,16 +11,19 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class KeyAuthCredential {
 
-    @SerializedName("id")
-    private String id;
-    @SerializedName("key")
-    private String key;
-    @SerializedName("consumer_id")
-    private String consumerId;
-    @SerializedName("created_at")
-    private Long createdAt;
+  @Json(name = "id")
+  private String id;
 
-    public KeyAuthCredential(String key) {
-        this.key = key;
-    }
+  @Json(name = "key")
+  private String key;
+
+  @Json(name = "consumer_id")
+  private String consumerId;
+
+  @Json(name = "created_at")
+  private Long createdAt;
+
+  public KeyAuthCredential(String key) {
+    this.key = key;
+  }
 }

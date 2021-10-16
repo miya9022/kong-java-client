@@ -9,6 +9,6 @@ import java.util.List;
  */
 @Data
 public class AclConfig {
-    List<String> whitelist;
-    List<String> blacklist;
+  List<String> whitelist;
+  List<String> blacklist;
 }

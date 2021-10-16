@@ -10,6 +10,6 @@ import java.util.List;
  */
 @Data
 public class JwtCredentialList extends AbstractEntityList {
-    Long total;
-    List<JwtCredential> data;
+  Long total;
+  List<JwtCredential> data;
 }

@@ -10,22 +10,22 @@ import retrofit2.http.*;
  */
 public interface RetrofitSniService {
 
-    @POST("snis/")
-    Call<Sni> createSni(@Body Sni request);
+  @POST("snis/")
+  Call<Sni> createSni(@Body Sni request);
 
-    @GET("snis/{name}")
-    Call<Sni> getSni(@Path("name") String name);
+  @GET("snis/{name}")
+  Call<Sni> getSni(@Path("name") String name);
 
-    @PATCH("snis/{name}")
-    Call<Sni> updateSni(@Path("name") String name, @Body Sni request);
+  @PATCH("snis/{name}")
+  Call<Sni> updateSni(@Path("name") String name, @Body Sni request);
 
-    @PUT("snis/")
-    Call<Sni> createOrUpdateSni(@Body Sni request);
+  @PUT("snis/")
+  Call<Sni> createOrUpdateSni(@Body Sni request);
 
-    @DELETE("snis/{name}")
-    Call<Void> deleteSni(@Path("name") String name);
+  @DELETE("snis/{name}")
+  Call<Void> deleteSni(@Path("name") String name);
 
-    @GET("snis/")
-    Call<SniList> listSnis();
+  @GET("snis/")
+  Call<SniList> listSnis();
 
 }
