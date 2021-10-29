@@ -75,7 +75,7 @@ public class RetrofitPluginServiceTest extends BaseTest {
       new Date().getTime()
     );
 
-    Plugin response = kongClient.getPluginService().createOrUpdatePlugin(request);
+    Plugin response = kongClient.getPluginService().upsertPlugin(request);
     printJson(response);
     Assert.assertEquals(request.name(), response.name());
   }
@@ -88,12 +88,12 @@ public class RetrofitPluginServiceTest extends BaseTest {
   @Test
   public void test20_ListPlugins() throws IOException {
     var plugins = new ArrayList<>();
-    var pluginList = kongClient.getPluginService().listPlugins(null, null, null, null, 1L, null);
+    var pluginList = kongClient.getPluginService().listPlugins();
     plugins.addAll(pluginList.getData());
-    while (pluginList.getOffset() != null) {
-      pluginList = kongClient.getPluginService().listPlugins(null, null, null, null, 1L, pluginList.getOffset());
-      plugins.addAll(pluginList.getData());
-    }
+//    while (pluginList.getOffset() != null) {
+//      pluginList = kongClient.getPluginService().listPlugins(null, null, null, null, 1L, pluginList.getOffset());
+//      plugins.addAll(pluginList.getData());
+//    }
     printJson(plugins);
     Assert.assertNotEquals(plugins.size(), 0);
   }

@@ -1,7 +1,5 @@
 package com.mgt.kongclient.internal.admin;
 
-
-import com.mgt.kongclient.model.admin.plugin.EnabledPlugins;
 import com.mgt.kongclient.model.admin.plugin.Plugin;
 import com.mgt.kongclient.model.admin.plugin.PluginList;
 import retrofit2.Call;
@@ -31,10 +29,4 @@ public interface RetrofitPluginService {
 
   @GET("plugins/")
   Call<PluginList> listPlugins();
-
-  @GET("plugins/enabled")
-  Call<EnabledPlugins> listEnabledPlugins();
-
-  @GET("plugins/schema/{pluginName}")
-  Call<PluginList> listPluginsWithName(@Path("pluginName") String pluginName);
 }

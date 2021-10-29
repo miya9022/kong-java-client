@@ -22,10 +22,9 @@ public interface PluginService {
 
   Plugin updatePlugin(String nameOrId, Plugin request);
 
-  @Deprecated
-  Plugin createOrUpdatePlugin(Plugin request);
+  Plugin upsertPlugin(Plugin request);
 
   void deletePlugin(String nameOrId);
 
-  PluginList listPlugins(String id, String apiId, String consumerId, String name, Long size, String offset);
+  PluginList listPlugins();
 }

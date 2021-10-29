@@ -25,10 +25,15 @@ import lombok.Getter;
 public class KongClient {
 
   private ConsumerService consumerService;
+  private ConsumerPluginService consumerPluginService;
 
   private AdminServicesService adminServicesService;
   private AdminServicesRouteService adminServicesRouteService;
+  private AdminServicesPluginService adminServicesPluginService;
+
   private RouteService routeService;
+  private RoutePluginService routePluginService;
+
   private ApiService apiService;
   private ApiPluginService apiPluginService;
 
@@ -75,10 +80,15 @@ public class KongClient {
 
     {
       consumerService = retrofitServiceCreatorForAdminUrl.create(ConsumerService.class, RetrofitConsumerService.class);
+      consumerPluginService = retrofitServiceCreatorForAdminUrl.create(ConsumerPluginService.class, RetrofitConsumerPluginService.class);
 
       adminServicesService = retrofitServiceCreatorForAdminUrl.create(AdminServicesService.class, RetrofitAdminServicesService.class);
       adminServicesRouteService = retrofitServiceCreatorForAdminUrl.create(AdminServicesRouteService.class, RetrofitAdminServicesRouteService.class);
+      adminServicesPluginService = retrofitServiceCreatorForAdminUrl.create(AdminServicesPluginService.class, RetrofitAdminServicesPluginService.class);
+
       routeService = retrofitServiceCreatorForAdminUrl.create(RouteService.class, RetrofitRouteService.class);
+      routePluginService = retrofitServiceCreatorForAdminUrl.create(RoutePluginService.class, RetrofitRoutePluginService.class);
+
       apiService = retrofitServiceCreatorForAdminUrl.create(ApiService.class, RetrofitApiService.class);
       apiPluginService = retrofitServiceCreatorForAdminUrl.create(ApiPluginService.class, RetrofitApiPluginService.class);
 
