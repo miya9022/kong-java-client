@@ -14,20 +14,20 @@ import java.util.Date;
  */
 public class BaseTest {
 
-	public static final String KONG_ADMIN_URL = "http://localhost:8001/";
-	public static final String KONG_API_URL = "https://localhost:8444/";
+  public static final String KONG_ADMIN_URL = "http://localhost:8001/";
+  public static final String KONG_API_URL = "https://localhost:8444/";
 
-	protected static KongClient kongClient;
+  protected static KongClient kongClient;
 
   protected Moshi moshi;
   protected JsonAdapter<Object> adapter;
 
 //	protected Gson gson;
 
-	@Before
-	public void before() {
+  @Before
+  public void before() {
 
-		kongClient = new KongClient(KONG_ADMIN_URL, KONG_API_URL, true);
+    kongClient = new KongClient(KONG_ADMIN_URL, KONG_API_URL, true);
 
     moshi = new Moshi.Builder()
       .add(new RecordsJsonAdapterFactory())
@@ -44,18 +44,18 @@ public class BaseTest {
 //				//@Since(版本号)能完美地实现这个功能.还的字段可能,随着版本的升级而删除,那么
 //				//@Until(版本号)也能实现这个功能,GsonBuilder.setVersion(double)方法需要调用.
 //				.create();
-	}
+  }
 
 
-	protected void printJson(Object object) {
-		System.out.println(adapter.toJson(object));
-	}
+  protected void printJson(Object object) {
+    System.out.println(adapter.toJson(object));
+  }
 
-	protected void printString(String str) {
-		System.out.println(str);
-	}
+  protected void printString(String str) {
+    System.out.println(str);
+  }
 
-	protected static String getCurrentDateTimeString() {
-		return new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
-	}
+  protected static String getCurrentDateTimeString() {
+    return new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+  }
 }

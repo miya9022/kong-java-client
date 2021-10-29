@@ -1,21 +1,29 @@
 package com.mgt.kongclient.model.admin.consumer;
 
 import com.squareup.moshi.Json;
-import lombok.Data;
+
+import java.util.List;
 
 /**
  * Created by vaibhav on 12/06/17.
  */
-@Data
-public class Consumer {
+public record Consumer(
+  String id,
+  @Json(name = "custom_id") String customId,
+  @Json(name = "created_at") Long createdAt,
+  String username,
+  List<String> tags
+) {
 
-  String id;
+  public Consumer(String id) {
+    this(id, null, null, null, null);
+  }
 
-  @Json(name = "custom_id")
-  String customId;
+  public Consumer(String id, String customId) {
+    this(id, customId, null, null, null);
+  }
 
-  @Json(name = "created_at")
-  Long createdAt;
-
-  String username;
+  public Consumer(String id, String customId, Long createdAt) {
+    this(id, customId, createdAt, null, null);
+  }
 }

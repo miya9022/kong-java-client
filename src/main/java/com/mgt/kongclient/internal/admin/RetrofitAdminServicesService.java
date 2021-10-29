@@ -27,24 +27,4 @@ public interface RetrofitAdminServicesService {
 
   @GET("services/")
   Call<ServiceList> listServices(@Query("tags") String tags);
-
-  // plugin associated apis
-  @GET("services/{id}/plugins")
-  Call<PluginList> listServicePlugins(@Path("id") String nameOrId);
-
-  // routes associated apis
-  @POST("services/{id}/routes")
-  Call<Route> createRouteByService(@Path("id") String nameOrId, @Body Route route);
-
-  @GET("services/{id}/routes")
-  Call<RouteList> getRoutesByService(@Path("id") String nameOrId);
-
-  @GET("services/{id}/routes/{routeId}")
-  Call<Route> getRouteByService(@Path("id") String nameOrId, @Path("routeId") String routeNameOrId);
-
-  @PUT("services/{id}/routes/{routeId}")
-  Call<Route> upsertRouteByService(@Path("id") String nameOrId, @Path("routeId") String routeNameOrId, @Body Route route);
-
-  @DELETE("services/{id}/routes/{routeId}")
-  Call<Void> deleteRouteByService(@Path("id") String nameOrId, @Path("routeId") String routeNameOrId);
 }

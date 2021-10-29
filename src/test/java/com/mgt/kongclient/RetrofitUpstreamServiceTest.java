@@ -1,81 +1,74 @@
 package com.mgt.kongclient;
 
+import com.mgt.kongclient.exception.KongClientException;
 import com.mgt.kongclient.model.admin.upstream.Upstream;
-import com.mgt.kongclient.model.admin.upstream.UpstreamList;
 import org.junit.Assert;
+import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by vaibhav on 12/06/17.
  */
-public class RetrofitUpstreamServiceTest  extends BaseTest {
+public class RetrofitUpstreamServiceTest extends BaseTest {
 
+  @Test
+  public void testCreateUpstream() throws IOException {
+    var request = new Upstream("local.com");
 
+    var response = kongClient.getUpstreamService().createUpstream(request);
+    System.out.print(response);
+    Assert.assertEquals(request.name(), response.name());
+  }
 
-//    @Test
-    public void testCreateUpstream() throws IOException {
-        Upstream request = new Upstream();
-        request.setName("local.com");
+  @Test
+  public void testGetUpstream() throws IOException {
+    var response = kongClient.getUpstreamService().getUpstream("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41");
+    System.out.print(response);
+    Assert.assertEquals("local.com", response.name());
+  }
 
-        Upstream response = kongClient.getUpstreamService().createUpstream(request);
-        System.out.print(response);
-        Assert.assertEquals(request.getName(), response.getName());
+  @Test
+  public void testListUpstreams() throws IOException {
+    var upstreams = new ArrayList<Upstream>();
+    var upstreamList = kongClient.getUpstreamService().listAllUpstreams();
+    upstreams.addAll(upstreamList.getData());
+    while (upstreamList.getOffset() != null) {
+      upstreamList = kongClient.getUpstreamService().listAllUpstreams();
+      upstreams.addAll(upstreamList.getData());
     }
+    System.out.println(upstreams);
+    Assert.assertNotEquals(upstreams.size(), 0);
+  }
 
-//    @Test
-    public void testGetUpstream() throws IOException {
-        Upstream response = kongClient.getUpstreamService().getUpstream("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41");
-        System.out.print(response);
-        Assert.assertEquals("local.com", response.getName());
-    }
+  @Test(expected = KongClientException.class)
+  public void exceptionTest() throws IOException {
+    kongClient.getUpstreamService().getUpstream("some-random-id");
+  }
 
-//    @Test
-    public void testListUpstreams() throws IOException {
-        List<Upstream> upstreams = new ArrayList<>();
-        UpstreamList upstreamList = kongClient.getUpstreamService().listUpstreams(null, null, null, 1L, null);
-        upstreams.addAll(upstreamList.getData());
-        while (upstreamList.getOffset() != null) {
-            upstreamList = kongClient.getUpstreamService().listUpstreams(null, null, null, 1L, upstreamList.getOffset());
-            upstreams.addAll(upstreamList.getData());
-        }
-        System.out.println(upstreams);
-        Assert.assertNotEquals(upstreams.size(), 0);
-    }
+  @Test
+  public void testUpdateUpstream() throws IOException {
+    Upstream request = new Upstream("local.com");
 
-//    @Test(expected = KongClientException.class)
-    public void exceptionTest() throws IOException {
-        kongClient.getUpstreamService().getUpstream("some-random-id");
-    }
+    Upstream response = kongClient.getUpstreamService().updateUpstream("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41", request);
+    System.out.print(response);
+    Assert.assertEquals(request.name(), response.name());
+  }
 
-//    @Test
-    public void testUpdateUpstream() throws IOException {
-        Upstream request = new Upstream();
-        request.setName("local.com");
+  @Test
+  public void testCreateOrUpdateUpstream() throws IOException {
+    var request = new Upstream("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41", "local.com", new Date().getTime());
 
-        Upstream response = kongClient.getUpstreamService().updateUpstream("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41", request);
-        System.out.print(response);
-        Assert.assertEquals(request.getName(), response.getName());
-    }
+    var response = kongClient.getUpstreamService().createOrUpdateUpstream("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41", request);
+    System.out.print(response);
+    Assert.assertEquals(request.name(), response.name());
+  }
 
-//    @Test
-    public void testCreateOrUpdateUpstream() throws IOException {
-        Upstream request = new Upstream();
-        request.setName("local.com");
-        request.setId("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41");
-        request.setCreatedAt(new Date().getTime());
-
-        Upstream response = kongClient.getUpstreamService().createOrUpdateUpstream(request);
-        System.out.print(response);
-        Assert.assertEquals(request.getName(), response.getName());
-    }
-
-//    @Test
-    public void testDeleteUpstream() throws IOException {
-        kongClient.getUpstreamService().deleteUpstream("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41");
-    }
+  @Test
+  public void testDeleteUpstream() throws IOException {
+    kongClient.getUpstreamService().deleteUpstream("0ba0f245-0fda-43a1-a96f-ac33e1b4cf41");
+  }
 
 }

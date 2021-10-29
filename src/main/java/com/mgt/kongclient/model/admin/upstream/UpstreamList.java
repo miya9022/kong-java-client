@@ -10,7 +10,6 @@ import java.util.List;
  */
 @Data
 public class UpstreamList extends AbstractEntityList {
-  Long total;
   String next;
   List<Upstream> data;
 }

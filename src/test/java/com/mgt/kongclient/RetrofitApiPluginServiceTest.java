@@ -6,6 +6,7 @@ import com.mgt.kongclient.model.admin.plugin.Plugin;
 import com.mgt.kongclient.model.admin.plugin.PluginList;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
@@ -14,18 +15,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@Deprecated
+@Ignore
 /**
  * Created by fanhua on 2017-08-05.
  */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RetrofitApiPluginServiceTest extends BaseTest {
 
-  private String PLUGIN_ID = "3d3ee453-161c-449b-a468-42f06b7c0dc5";
-  private String PLUGIN_NAME = "oauth2";
-  private OAuth2Config OAUTH2_CONFIG = new OAuth2Config();
-  private String OAUTH2_PROVISION_KEY = "1f2b8d4baadb4b6f93c82b1599cad575";
+  private final String PLUGIN_ID = "3d3ee453-161c-449b-a468-42f06b7c0dc5";
+  private final String PLUGIN_NAME = "oauth2";
+  private final OAuth2Config OAUTH2_CONFIG = new OAuth2Config();
+  private final String OAUTH2_PROVISION_KEY = "1f2b8d4baadb4b6f93c82b1599cad575";
 
-  private String API_NAME = "Test.V2.Api";
+  private final String API_NAME = "Test.V2.Api";
 
   // -------------------------------------------------------------------------------
 

@@ -10,7 +10,6 @@ import java.util.List;
  */
 @Data
 public class ConsumerList extends AbstractEntityList {
-  Long total;
   String next;
   List<Consumer> data;
 }

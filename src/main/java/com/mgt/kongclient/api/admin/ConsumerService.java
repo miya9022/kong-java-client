@@ -10,14 +10,13 @@ public interface ConsumerService {
 
   Consumer createConsumer(Consumer request);
 
+  ConsumerList getAllConsumers();
+
   Consumer getConsumer(String usernameOrId);
 
   Consumer updateConsumer(String usernameOrId, Consumer request);
 
-  @Deprecated
-  Consumer createOrUpdateConsumer(Consumer request);
+  Consumer upsertConsumer(String usernameOrId, Consumer request);
 
-  void deleteConsumer(String usernameOrId);
-
-  ConsumerList listConsumers(String id, String customId, String username, Long size, String offset);
+  Void deleteConsumer(String usernameOrId);
 }

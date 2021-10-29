@@ -12,7 +12,7 @@ import com.mgt.kongclient.impl.service.plugin.security.AclServiceImpl;
 import com.mgt.kongclient.internal.plugin.security.RetrofitAclService;
 import com.mgt.kongclient.internal.admin.*;
 import com.mgt.kongclient.internal.plugin.authentication.*;
-import lombok.Data;
+import lombok.Getter;
 
 /**
  * Created by vaibhav on 12/06/17.
@@ -21,12 +21,14 @@ import lombok.Data;
  * <p>
  * Updated by dvilela on 17/10/17.
  */
-@Data
+@Getter
 public class KongClient {
 
   private ConsumerService consumerService;
 
   private AdminServicesService adminServicesService;
+  private AdminServicesRouteService adminServicesRouteService;
+  private RouteService routeService;
   private ApiService apiService;
   private ApiPluginService apiPluginService;
 
@@ -75,6 +77,8 @@ public class KongClient {
       consumerService = retrofitServiceCreatorForAdminUrl.create(ConsumerService.class, RetrofitConsumerService.class);
 
       adminServicesService = retrofitServiceCreatorForAdminUrl.create(AdminServicesService.class, RetrofitAdminServicesService.class);
+      adminServicesRouteService = retrofitServiceCreatorForAdminUrl.create(AdminServicesRouteService.class, RetrofitAdminServicesRouteService.class);
+      routeService = retrofitServiceCreatorForAdminUrl.create(RouteService.class, RetrofitRouteService.class);
       apiService = retrofitServiceCreatorForAdminUrl.create(ApiService.class, RetrofitApiService.class);
       apiPluginService = retrofitServiceCreatorForAdminUrl.create(ApiPluginService.class, RetrofitApiPluginService.class);
 

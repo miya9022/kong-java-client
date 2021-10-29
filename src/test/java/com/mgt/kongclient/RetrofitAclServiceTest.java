@@ -16,31 +16,28 @@ import static org.junit.Assert.assertEquals;
  */
 public class RetrofitAclServiceTest extends BaseTest {
 
-    private Consumer consumer;
+  private Consumer consumer;
 
-    @Before
-    public void createConsumer() throws Exception {
-        consumer = new Consumer();
-        String id = UUID.randomUUID().toString();
-        consumer.setCustomId(id);
+  @Before
+  public void createConsumer() throws Exception {
+    consumer = new Consumer(UUID.randomUUID().toString());
+    consumer = kongClient.getConsumerService().createConsumer(consumer);
+  }
 
-        consumer = kongClient.getConsumerService().createConsumer(consumer);
-    }
+  @After
+  public void deleteConsumer() throws Exception {
+    kongClient.getConsumerService().deleteConsumer(consumer.id());
+  }
 
-    @After
-    public void deleteConsumer() throws Exception {
-        kongClient.getConsumerService().deleteConsumer(consumer.getId());
-    }
+  @Test
+  public void testAssociateAndListAcls() throws Exception {
+    kongClient.getAclService().associateConsumer(consumer.id(), "default");
 
-    @Test
-    public void testAssociateAndListAcls() throws Exception {
-        kongClient.getAclService().associateConsumer(consumer.getId(), "default");
+    AclList list = kongClient.getAclService().listAcls(consumer.id(), 1L, null);
 
-        AclList list = kongClient.getAclService().listAcls(consumer.getId(), 1L, null);
-
-        Acl acl = list.getData().get(0);
-        assertEquals(consumer.getId(), acl.getConsumerId());
-        assertEquals("default", acl.getGroup());
-    }
+    Acl acl = list.getData().get(0);
+    assertEquals(consumer.id(), acl.getConsumerId());
+    assertEquals("default", acl.getGroup());
+  }
 
 }

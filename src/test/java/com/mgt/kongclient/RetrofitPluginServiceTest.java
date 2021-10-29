@@ -2,7 +2,6 @@ package com.mgt.kongclient;
 
 import com.mgt.kongclient.exception.KongClientException;
 import com.mgt.kongclient.model.admin.plugin.Plugin;
-import com.mgt.kongclient.model.admin.plugin.PluginList;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -11,7 +10,6 @@ import org.junit.runners.MethodSorters;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by vaibhav on 12/06/17.
@@ -22,10 +20,10 @@ import java.util.List;
 public class RetrofitPluginServiceTest extends BaseTest {
 
 
-  private String PLUGIN_ID = "61e5b656-7b68-4761-aeae-d9c94a5782c8";
-  private String PLUGIN_NAME = "jwt";
+  private final String PLUGIN_ID = "61e5b656-7b68-4761-aeae-d9c94a5782c8";
+  private final String PLUGIN_NAME = "jwt";
 
-  private String API_ID = "3a9fa5b9-5f99-4ab8-a949-d676becd30b3";
+  private final String API_ID = "3a9fa5b9-5f99-4ab8-a949-d676becd30b3";
 
   @Test
   public void test11_CreatePlugin() throws IOException {

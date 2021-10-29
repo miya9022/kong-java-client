@@ -21,59 +21,58 @@ import static org.junit.Assert.*;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RetrofitKeyAuthServiceTest extends BaseTest {
 
-    private Consumer consumer;
+  private Consumer consumer;
 
-    @Before
-    public void createConsumer() throws Exception {
-        Consumer c = new Consumer();
-        c.setCustomId(UUID.randomUUID().toString());
-        consumer = kongClient.getConsumerService().createConsumer(c);
+  @Before
+  public void createConsumer() throws Exception {
+    var c = new Consumer(null, UUID.randomUUID().toString());
+    consumer = kongClient.getConsumerService().createConsumer(c);
 
-        KeyAuthCredential credential = kongClient.getKeyAuthService().addCredentials(consumer.getId(), null);
-        assertEquals(consumer.getId(), credential.getConsumerId());
-        assertNotNull(consumer.getId(), credential.getKey());
+    var credential = kongClient.getKeyAuthService().addCredentials(consumer.id(), null);
+    assertEquals(consumer.id(), credential.getConsumerId());
+    assertNotNull(consumer.id(), credential.getKey());
+  }
+
+  @After
+  public void deleteConsumer() throws Exception {
+    kongClient.getConsumerService().deleteConsumer(consumer.id());
+  }
+
+  @Test
+  public void test01_addRepeatedCredentialTest() throws Exception {
+    var credential1 = kongClient.getKeyAuthService().addCredentials(consumer.id(), null);
+    assertEquals(consumer.id(), credential1.getConsumerId());
+    assertNotNull(consumer.id(), credential1.getKey());
+
+    try {
+      var credential2 = kongClient.getKeyAuthService().addCredentials(consumer.id(),
+        credential1.getKey());
+      fail("RetrofitKeyAuthService did not throw");
+    } catch (KongClientException e) {
+      assertEquals(409, e.getCode());
+      assertEquals("Conflict", e.getError());
     }
+  }
 
-    @After
-    public void deleteConsumer() throws Exception {
-        kongClient.getConsumerService().deleteConsumer(consumer.getId());
+  @Test
+  public void test02_listCredentialsTest() throws Exception {
+    var list = kongClient.getKeyAuthService().listCredentials(consumer.id(), null,
+      null);
+    var credential = list.getData().get(0);
+    assertEquals(consumer.id(), credential.getConsumerId());
+  }
+
+  @Test
+  public void test03_deleteCredentialTest() throws Exception {
+    var list = kongClient.getKeyAuthService().listCredentials(consumer.id(), null,
+      null);
+    var credentials = list.getData();
+    for (var credential : credentials) {
+      kongClient.getKeyAuthService().deleteCredential(credential.getConsumerId(), credential.getId());
     }
-
-    @Test
-    public void test01_addRepeatedCredentialTest() throws Exception {
-        KeyAuthCredential credential1 = kongClient.getKeyAuthService().addCredentials(consumer.getId(), null);
-        assertEquals(consumer.getId(), credential1.getConsumerId());
-        assertNotNull(consumer.getId(), credential1.getKey());
-
-        try {
-            KeyAuthCredential credential2 = kongClient.getKeyAuthService().addCredentials(consumer.getId(),
-                    credential1.getKey());
-            fail("RetrofitKeyAuthService did not throw");
-        } catch (KongClientException e) {
-            assertEquals(409, e.getCode());
-            assertEquals("Conflict", e.getError());
-        }
-    }
-
-    @Test
-    public void test02_listCredentialsTest() throws Exception {
-        KeyAuthCredentialList list = kongClient.getKeyAuthService().listCredentials(consumer.getId(), null,
-                null);
-        KeyAuthCredential credential = list.getData().get(0);
-        assertEquals(consumer.getId(), credential.getConsumerId());
-    }
-
-    @Test
-    public void test03_deleteCredentialTest() throws Exception {
-        KeyAuthCredentialList list = kongClient.getKeyAuthService().listCredentials(consumer.getId(), null,
-                null);
-        List<KeyAuthCredential> credentials = list.getData();
-        for (KeyAuthCredential credential : credentials) {
-            kongClient.getKeyAuthService().deleteCredential(credential.getConsumerId(), credential.getId());
-        }
-        KeyAuthCredentialList list2 = kongClient.getKeyAuthService().listCredentials(consumer.getId(), null,
-                null);
-        assertEquals(0L, (long) list2.getTotal());
-    }
+    var list2 = kongClient.getKeyAuthService().listCredentials(consumer.id(), null,
+      null);
+    assertEquals(0L, (long) list2.getTotal());
+  }
 
 }

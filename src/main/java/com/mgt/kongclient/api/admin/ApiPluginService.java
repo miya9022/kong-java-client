@@ -3,6 +3,7 @@ package com.mgt.kongclient.api.admin;
 import com.mgt.kongclient.model.admin.plugin.Plugin;
 import com.mgt.kongclient.model.admin.plugin.PluginList;
 
+@Deprecated
 /**
  * You can add a plugin in four different ways:
  * For every API and Consumer. Don't set api_id and consumer_id.

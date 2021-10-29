@@ -5,6 +5,7 @@ import com.mgt.kongclient.model.admin.plugin.PluginList;
 import retrofit2.Call;
 import retrofit2.http.*;
 
+@Deprecated
 /**
  * Created by fanhua on 2017-08-05.
  */

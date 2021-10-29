@@ -2,7 +2,6 @@ package com.mgt.kongclient;
 
 import com.mgt.kongclient.exception.KongClientException;
 import com.mgt.kongclient.model.admin.consumer.Consumer;
-import com.mgt.kongclient.model.admin.consumer.ConsumerList;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -10,7 +9,7 @@ import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created by vaibhav on 12/06/17.
@@ -18,73 +17,58 @@ import java.util.List;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RetrofitConsumerServiceTest extends BaseTest {
 
-    private String CONSUMER_ID = "12faf661-3529-40c6-98e0-5a54894ad22f";
-    private String CONSUMER_USERNAME = "";
-    private String CONSUMER_CUSTOM_ID = "1234-5678-9012";
+  private final String CONSUMER_ID = "12faf661-3529-40c6-98e0-5a54894ad22f";
+  private final String CONSUMER_USERNAME = "";
+  private final String CONSUMER_CUSTOM_ID = "1234-5678-9012";
 
-    @Test
-    public void test01_CreateConsumer() throws IOException {
-        Consumer request = new Consumer();
-        request.setId(CONSUMER_ID);
-        request.setCustomId(CONSUMER_CUSTOM_ID);
+  @Test
+  public void test01_CreateConsumer() throws IOException {
+    var request = new Consumer(CONSUMER_ID, CONSUMER_CUSTOM_ID);
 
-        Consumer response = kongClient.getConsumerService().createConsumer(request);
-        printJson(response);
-        Assert.assertEquals(request.getCustomId(), response.getCustomId());
-    }
+    var response = kongClient.getConsumerService().createConsumer(request);
+    printJson(response);
+    Assert.assertEquals(request.customId(), response.customId());
+  }
 
-    @Test
-    public void test02_GetConsumer() throws IOException {
-        Consumer response = kongClient.getConsumerService().getConsumer(CONSUMER_ID);
-        printJson(response);
-        Assert.assertEquals(CONSUMER_ID, response.getId());
-    }
+  @Test
+  public void test02_GetConsumer() throws IOException {
+    var response = kongClient.getConsumerService().getConsumer(CONSUMER_ID);
+    printJson(response);
+    Assert.assertEquals(CONSUMER_ID, response.id());
+  }
 
-    @Test(expected = KongClientException.class)
-    public void test03_exceptionTest() throws IOException {
-        kongClient.getConsumerService().getConsumer("some-random-id");
-    }
+  @Test(expected = KongClientException.class)
+  public void test03_exceptionTest() throws IOException {
+    kongClient.getConsumerService().getConsumer("some-random-id");
+  }
 
-    @Test
-    public void test04_UpdateConsumer() throws IOException {
-        Consumer request = new Consumer();
-        request.setCustomId("1234-5678-9012-3456");
+  @Test
+  public void test04_UpdateConsumer() throws IOException {
+    var request = new Consumer(null, "1234-5678-9012-3456");
 
-        Consumer response = kongClient.getConsumerService().updateConsumer(CONSUMER_ID, request);
-        printJson(response);
-        Assert.assertEquals(request.getCustomId(), response.getCustomId());
-    }
+    Consumer response = kongClient.getConsumerService().updateConsumer(CONSUMER_ID, request);
+    printJson(response);
+    Assert.assertEquals(request.customId(), response.customId());
+  }
 
-//    @Test
-    public void test05_CreateOrUpdateConsumer() throws IOException {
-        Consumer request = new Consumer();
-        request.setCustomId(CONSUMER_CUSTOM_ID);
-        request.setId(CONSUMER_ID);
-//        request.setUsername(CONSUMER_USERNAME);
-        request.setCreatedAt(123456789L);
+  //    @Test
+  public void test05_CreateOrUpdateConsumer() throws IOException {
+    var request = new Consumer(CONSUMER_ID, CONSUMER_CUSTOM_ID, new Date().getTime());
+    var response = kongClient.getConsumerService().upsertConsumer(CONSUMER_ID, request);
+    printJson(response);
+    Assert.assertEquals(request.customId(), response.customId());
+  }
 
-        Consumer response = kongClient.getConsumerService().createOrUpdateConsumer(request);
-        printJson(response);
-        Assert.assertEquals(request.getCustomId(), response.getCustomId());
-    }
+  @Test
+  public void test09_DeleteConsumer() throws IOException {
+    kongClient.getConsumerService().deleteConsumer(CONSUMER_ID);
+  }
 
-    @Test
-    public void test09_DeleteConsumer() throws IOException {
-        kongClient.getConsumerService().deleteConsumer(CONSUMER_ID);
-    }
-
-    @Test
-    public void test10_ListConsumers() throws IOException {
-        List<Consumer> consumers = new ArrayList<>();
-        ConsumerList consumerList = kongClient.getConsumerService().listConsumers(null, null, null, 1L, null);
-        consumers.addAll(consumerList.getData());
-        while (consumerList.getOffset() != null) {
-            consumerList = kongClient.getConsumerService().listConsumers(null, null, null, 1L, consumerList.getOffset());
-            consumers.addAll(consumerList.getData());
-        }
-        printJson(consumers);
-        Assert.assertNotEquals(consumers.size(), 0);
-    }
-
-
+  @Test
+  public void test10_ListConsumers() throws IOException {
+    var consumerList = kongClient.getConsumerService().getAllConsumers();
+    var consumers = new ArrayList<>(consumerList.getData());
+    printJson(consumers);
+    Assert.assertNotEquals(consumers.size(), 0);
+  }
 }
